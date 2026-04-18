@@ -4,6 +4,7 @@
  */
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { AuthProvider } from './hooks/useAuth.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import Meals from './pages/Meals.tsx';
@@ -34,6 +35,7 @@ export default function App() {
       <Router>
         <MainLayout />
       </Router>
+      <Analytics />
     </AuthProvider>
   );
 }

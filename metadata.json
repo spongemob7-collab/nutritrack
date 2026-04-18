@@ -1,0 +1,6 @@
+{
+  "name": "NutriTrack AI",
+  "description": "A complete, production-ready Diet & Fitness Tracker with an intelligent recipe generator based on available kitchen ingredients. Integrates with Gemini AI for real-time tailored recipes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

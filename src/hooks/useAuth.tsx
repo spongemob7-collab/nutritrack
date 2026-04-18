@@ -18,35 +18,18 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  // Hardcoded guest user so the entire app skips auth checks
+  const [user, setUser] = useState<User | null>({ 
+    _id: 'guest', 
+    name: 'Guest User', 
+    email: 'guest@example.com', 
+    goal: 'maintain' 
+  });
+  const [token, setToken] = useState<string | null>('dummy-token');
+  const loading = false;
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-    
-    if (storedToken && storedUser) {
-      setToken(storedToken);
-      setUser(JSON.parse(storedUser));
-    }
-    
-    setLoading(false);
-  }, []);
-
-  const login = (newToken: string, newUser: User) => {
-    localStorage.setItem('token', newToken);
-    localStorage.setItem('user', JSON.stringify(newUser));
-    setToken(newToken);
-    setUser(newUser);
-  };
-
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setToken(null);
-    setUser(null);
-  };
+  const login = (newToken: string, newUser: User) => {};
+  const logout = () => {};
 
   return (
     <AuthContext.Provider value={{ user, token, login, logout, loading }}>

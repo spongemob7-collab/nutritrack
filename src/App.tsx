@@ -3,24 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './hooks/useAuth.tsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './hooks/useAuth.tsx';
 import Dashboard from './pages/Dashboard.tsx';
-import Login from './pages/Login.tsx';
-import Register from './pages/Register.tsx';
 import Meals from './pages/Meals.tsx';
 import Workouts from './pages/Workouts.tsx';
 import RecipeAI from './pages/RecipeAI.tsx';
 import Navbar from './components/Navbar.tsx';
-
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth();
-  
-  if (loading) return <div>Loading...</div>;
-  if (!user) return <Navigate to="/login" />;
-  
-  return <>{children}</>;
-}
 
 function MainLayout() {
   return (
@@ -43,15 +32,7 @@ export default function App() {
   return (
     <AuthProvider>
       <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/*" element={
-            <ProtectedRoute>
-              <MainLayout />
-            </ProtectedRoute>
-          } />
-        </Routes>
+        <MainLayout />
       </Router>
     </AuthProvider>
   );

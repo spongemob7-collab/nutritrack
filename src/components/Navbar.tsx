@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.tsx';
 import { cn } from '../lib/utils.ts';
-import { Activity, Apple, ChefHat, LayoutDashboard, LogOut } from 'lucide-react';
+import { Activity, Apple, ChefHat, LayoutDashboard } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function Navbar() {
@@ -57,13 +57,6 @@ export default function Navbar() {
             <div className="hidden sm:block text-sm text-slate-400">
               {user?.name}
             </div>
-            <button
-              onClick={logout}
-              className="p-2 text-slate-400 hover:text-slate-50 transition-colors rounded-full hover:bg-white/10"
-              title="Log out"
-            >
-              <LogOut className="w-5 h-5" />
-            </button>
           </div>
         </div>
       </div>
